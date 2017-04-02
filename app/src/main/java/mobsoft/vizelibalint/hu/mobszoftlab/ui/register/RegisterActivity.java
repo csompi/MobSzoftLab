@@ -1,0 +1,38 @@
+package mobsoft.vizelibalint.hu.mobszoftlab.ui.register;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import javax.inject.Inject;
+
+import mobsoft.vizelibalint.hu.mobszoftlab.R;
+
+public class RegisterActivity extends AppCompatActivity implements RegisterScreen {
+
+    @Inject
+    RegisterPresenter registerPresenter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerPresenter.attachScreen(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        registerPresenter.detachScreen();
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+}
