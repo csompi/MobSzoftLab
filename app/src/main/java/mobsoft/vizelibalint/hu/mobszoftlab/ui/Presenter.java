@@ -1,4 +1,4 @@
-package mobsoft.vizelibalint.hu.mobszoftlab;
+package mobsoft.vizelibalint.hu.mobszoftlab.ui;
 
 public abstract class Presenter<S> {
     protected S screen;

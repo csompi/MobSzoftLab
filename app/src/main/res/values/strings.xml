@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">MobSzoftLab</string>
+    <string name="register_label">Register</string>
+    <string name="company_label">Companies</string>
+
+    //LOGIN
+    <string name="login_application_title">SeqNumber</string>
+    <string name="login_email_helper">E-mail</string>
+    <string name="login_password_helper">Password</string>
+    <string name="login_login_button">Login</string>
+    <string name="login_register_button">Register</string>
+
+    //REGISTER
+    <string name="register_name_helper">Name</string>
+    <string name="register_email_helper">E-mail</string>
+    <string name="register_password_helper">Password</string>
+
+    //MAIN
+    <string name="main_current_number">Current number</string>
+    <string name="main_current_number_placeholder">-</string>
+    <string name="main_number_of_applicants_waiting">Number of applicants waiting</string>
+    <string name="main_number_of_applicants_waiting_placeholder">-</string>
+    <string name="main_get_number">Get a number</string>
+    <string name="main_delete_number">Delete number</string>
+
 </resources>
