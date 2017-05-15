@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "636030743018",
+    "project_id": "mobszoftlab"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636030743018:android:d48de9cb4de8d676",
+        "android_client_info": {
+          "package_name": "mobsoft.vizelibalint.hu.mobszoftlab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPbTM7NKZ1W6BpQGMbCGXcrWyr84UX4to"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-98733825-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

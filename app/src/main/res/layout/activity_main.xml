@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:text="@string/main_current_number"/>
+
+        <TextView
+            android:id="@+id/main_current_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:text="@string/main_current_number_placeholder"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:text="@string/main_number_of_applicants_waiting"/>
+
+        <TextView
+            android:id="@+id/main_applicants_waiting_tv"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:text="@string/main_current_number_placeholder"/>
+
+        <Button
+            android:id="@+id/main_get_number_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/colorGreen"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:text="@string/main_get_number"/>
+
+        <Button
+            android:id="@+id/main_delete_number_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/colorRed"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:text="@string/main_delete_number"/>
+
+    </LinearLayout>
+</ScrollView>
+
