@@ -6,11 +6,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class RepositoryModule {
+public class TestRepositoryModule {
 
-    @Singleton
+	@Singleton
     @Provides
-    public Repository provideRepository() {
-        return new MemoryRepository();
-    }
+	public Repository provideRepository() {
+		return new MemoryRepository();
+	}
 }

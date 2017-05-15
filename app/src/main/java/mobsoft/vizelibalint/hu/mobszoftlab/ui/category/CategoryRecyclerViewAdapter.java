@@ -8,10 +8,19 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import mobsoft.vizelibalint.hu.mobszoftlab.MobSoftApplication;
 import mobsoft.vizelibalint.hu.mobszoftlab.R;
 import mobsoft.vizelibalint.hu.mobszoftlab.model.Category;
+import mobsoft.vizelibalint.hu.mobszoftlab.model.Company;
 
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewHolder> {
+
+    @Inject
+    CategoryPresenter categoryPresenter;
+
+    public Company companyObject;
 
     private Context mContext;
     private List<Category> categoryList;
@@ -19,6 +28,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     public CategoryRecyclerViewAdapter(Context context, List<Category> categories){
         mContext = context;
         categoryList = categories;
+        MobSoftApplication.injector.inject(this);
     }
 
     @Override
@@ -31,14 +41,14 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
     @Override
     public void onBindViewHolder(CategoryRecyclerViewHolder holder, int position) {
-        Category category = categoryList.get(position);
+        final Category category = categoryList.get(position);
         holder.title_tv.setText(category.getName());
         String subtitle = "Applicants waiting: " + category.getSeqNumbers().size();
         holder.subtitle_tv.setText(subtitle);
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                categoryPresenter.getNewSeqNumber(companyObject, category);
             }
         });
     }

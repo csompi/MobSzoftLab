@@ -16,9 +16,13 @@ public interface Repository {
     void close();
 
     List<Company> getCompanies();
+    void setCompanies(List<Company> companies);
     void addOrDeleteSeqNumberToCategory(Company company, Category category);
     void deleteCategory(Integer companyId, Integer categoryId);
     void addNewCategoryToCompany(Company company, Category category);
+
+    void setCurrentUser(User user);
+    User getCurrentUser();
 
     void addSeqNumberToUser(User user, SeqNumber seqNumber);
     void deleteUserSeqNumber(User user, SeqNumber seqNumber);

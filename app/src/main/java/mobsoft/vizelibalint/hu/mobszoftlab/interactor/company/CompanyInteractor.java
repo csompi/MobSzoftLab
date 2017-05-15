@@ -1,18 +1,21 @@
-package mobsoft.vizelibalint.hu.mobszoftlab.interactor.login;
+package mobsoft.vizelibalint.hu.mobszoftlab.interactor.company;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import mobsoft.vizelibalint.hu.mobszoftlab.MobSoftApplication;
 import mobsoft.vizelibalint.hu.mobszoftlab.interactor.BaseEvent;
-import mobsoft.vizelibalint.hu.mobszoftlab.model.User;
+import mobsoft.vizelibalint.hu.mobszoftlab.model.Company;
 import mobsoft.vizelibalint.hu.mobszoftlab.network.API;
 import mobsoft.vizelibalint.hu.mobszoftlab.repository.Repository;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class LoginInteractor {
+
+public class CompanyInteractor {
 
     @Inject
     API networkApi;
@@ -20,7 +23,7 @@ public class LoginInteractor {
     @Inject
     Repository repository;
 
-    public LoginInteractor() {
+    public CompanyInteractor() {
         MobSoftApplication.injector.inject(this);
     }
 
@@ -35,25 +38,23 @@ public class LoginInteractor {
         EventBus.getDefault().post(event);
     }
 
-    public void login(String username, String password) {
-        Call<User> userCall = networkApi.loginUser(username, password);
-        LoginEvent event = new LoginEvent();
+    public void getCompanies() {
+        Call<List<Company>> listCall = networkApi.getCompanies();
+        CompanyEvent companyEvent = new CompanyEvent();
         try {
-            Response<User> userResponse = userCall.execute();
-            switch (userResponse.code()) {
+            Response<List<Company>> response = listCall.execute();
+            switch (response.code()) {
                 case 200:
-                    repository.setCurrentUser(userResponse.body());
-                    event.setUser(userResponse.body());
-                    eventPostSuccessMessage(userResponse.code(), event);
+                    companyEvent.setCompanies(response.body());
+                    repository.setCompanies(response.body());
+                    eventPostSuccessMessage(response.code(), companyEvent);
                     break;
                 default:
-                    eventPostFailMessage(event, new Exception());
+                    eventPostFailMessage(companyEvent, new Exception());
                     break;
             }
-        } catch (Exception e) {
-            eventPostFailMessage(event, e);
+        } catch (Exception e){
+            eventPostFailMessage(companyEvent, e);
         }
-
     }
-
 }

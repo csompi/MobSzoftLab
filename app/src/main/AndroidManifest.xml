@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobsoft.vizelibalint.hu.mobszoftlab">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +26,11 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="mobsoft.vizelibalint.hu.mobszoftlab.model" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="972836091b7c9e36311658da5d73472c701a8412"
+            />
 
         <activity
             android:name=".ui.login.LoginActivity"

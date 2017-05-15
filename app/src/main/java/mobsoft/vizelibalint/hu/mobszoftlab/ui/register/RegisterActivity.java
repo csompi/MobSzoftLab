@@ -65,6 +65,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
         register_layout = (LinearLayout) findViewById(R.id.activity_register);
         ButterKnife.bind(this);
         MobSoftApplication.injector.inject(this);
+
+        register_name_et.setText("Puhadisznó");
+        register_email_et.setText("cicakutya@gmail.com");
+        register_password_et.setText("Asd1234");
+        register_repassword_et.setText("Asd1234");
     }
 
     @Override
@@ -77,5 +82,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterScree
     protected void onStop() {
         super.onStop();
         registerPresenter.detachScreen();
+    }
+
+    @Override
+    public void navigateBackToLogin() {
+        finish();
     }
 }

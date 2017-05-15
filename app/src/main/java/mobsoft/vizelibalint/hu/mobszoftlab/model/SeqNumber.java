@@ -3,6 +3,7 @@ package mobsoft.vizelibalint.hu.mobszoftlab.model;
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModel;
@@ -12,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 @ApiModel(description = "")
-public class SeqNumber extends SugarRecord {
+public class SeqNumber extends SugarRecord implements Serializable{
   
   @SerializedName("number")
   private Integer number = null;

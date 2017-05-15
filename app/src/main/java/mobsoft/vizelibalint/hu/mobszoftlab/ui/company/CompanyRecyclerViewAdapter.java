@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.List;
 
 import mobsoft.vizelibalint.hu.mobszoftlab.R;
@@ -15,12 +18,21 @@ import mobsoft.vizelibalint.hu.mobszoftlab.ui.category.CategoryActivity;
 
 public class CompanyRecyclerViewAdapter extends RecyclerView.Adapter<CompanyRecyclerViewHolder> {
 
+    Tracker mTracker;
+
     private Context mContext;
     private List<Company> mDataSource;
 
     public CompanyRecyclerViewAdapter(Context context, List<Company> companies){
         mContext = context;
         mDataSource = companies;
+    }
+
+    public void setNewItems(List<Company> companies) {
+        mDataSource.clear();
+        if (companies != null)
+            mDataSource.addAll(companies);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,12 +51,16 @@ public class CompanyRecyclerViewAdapter extends RecyclerView.Adapter<CompanyRecy
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Start")
+                        .setAction("Start category screen")
+                        .setValue(1)
+                        .build());
                 Intent intent = new Intent(mContext, CategoryActivity.class);
                 intent.putExtra("company", company);
                 mContext.startActivity(intent);
             }
         });
-
     }
 
     @Override

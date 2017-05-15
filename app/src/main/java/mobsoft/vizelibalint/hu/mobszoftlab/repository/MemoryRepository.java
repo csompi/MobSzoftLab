@@ -15,41 +15,26 @@ public class MemoryRepository implements Repository {
 
 	private static final long MINUTE = 60 * 1000;
 
-	private static List<Company> companies;
+	private List<Company> mCompanies;
+
+    private User currentUser;
 
 	@Override
 	public void open(Context context) {
-		companies = new ArrayList<>();
-        Company company = new Company();
-        company.setName("T-Mobile");
-        company.setAddress("1519 Budapest, Pf. 434");
-        company.setCompanyId(1);
-
-        Category category1 = new Category();
-        category1.setCategoryId(1);
-        category1.setName("Telefon");
-        category1.setEnabled(true);
-
-        Category category2 = new Category();
-        category2.setCategoryId(2);
-        category2.setName("Internet");
-        category2.setEnabled(true);
-
-        List<Category> categoryList = new ArrayList<>();
-        categoryList.add(category1);
-        categoryList.add(category2);
-
-        company.setCategories(categoryList);
+		mCompanies = new ArrayList<>();
 	}
 
 	@Override
-	public void close() {
-
-	}
+	public void close() {}
 
     @Override
     public List<Company> getCompanies() {
-        return companies;
+        return mCompanies;
+    }
+
+    @Override
+    public void setCompanies(List<Company> companies) {
+        mCompanies = companies;
     }
 
     @Override
@@ -60,7 +45,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public void deleteCategory(Integer companyId, Integer categoryId) {
-        for(Company company : companies) {
+        for(Company company : mCompanies) {
             if (company.getCompanyId() == companyId) {
                 for(Category category : company.getCategories()) {
                     if (category.getCategoryId() == categoryId) {
@@ -78,6 +63,16 @@ public class MemoryRepository implements Repository {
     }
 
     @Override
+    public void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    @Override
     public void addSeqNumberToUser(User user, SeqNumber seqNumber) {
         user.setSeqNumber(seqNumber);
     }
@@ -91,6 +86,4 @@ public class MemoryRepository implements Repository {
     public void setDeskActualSeqNumber(Desk desk, SeqNumber seqNumber) {
         desk.setActualSeqNumber(seqNumber);
     }
-
-
 }

@@ -1,34 +1,37 @@
-package mobsoft.vizelibalint.hu.mobszoftlab.ui;
+package mobsoft.vizelibalint.hu.mobszoftlab;
 
 import android.content.Context;
 
 import com.google.android.gms.analytics.Tracker;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import mobsoft.vizelibalint.hu.mobszoftlab.MobSoftApplication;
 import mobsoft.vizelibalint.hu.mobszoftlab.ui.category.CategoryPresenter;
 import mobsoft.vizelibalint.hu.mobszoftlab.ui.company.CompanyPresenter;
 import mobsoft.vizelibalint.hu.mobszoftlab.ui.login.LoginPresenter;
 import mobsoft.vizelibalint.hu.mobszoftlab.ui.main.MainPresenter;
 import mobsoft.vizelibalint.hu.mobszoftlab.ui.register.RegisterPresenter;
+import mobsoft.vizelibalint.hu.mobszoftlab.utils.UiExecutor;
+import mobsoft.vizelibalint.hu.mobszoftlab.ui.UIModule;
 
 @Module
-public class UIModule {
-    private Context context;
+public class TestModule {
 
-    public UIModule(Context context) {
-        this.context = context;
+    private final UIModule UIModule;
+
+    public TestModule(Context context) {
+        this.UIModule = new UIModule(context);
     }
 
     @Provides
     public Context provideContext() {
-        return context;
+        return UIModule.provideContext();
     }
 
     @Provides
@@ -63,14 +66,19 @@ public class UIModule {
 
     @Provides
     @Singleton
-    public Executor provideNetworkExecutor() {
-        return Executors.newFixedThreadPool(10);
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
     }
 
     @Provides
     @Singleton
-    public Tracker provideTracker() {
-        MobSoftApplication application = (MobSoftApplication) context.getApplicationContext();
-        return application.getDefaultTracker();
+    public Executor provideNetworkExecutor() {
+        return new UiExecutor();
     }
+
+    @Provides
+    public Tracker provideTracker() {
+        return UIModule.provideTracker();
+    }
+
 }

@@ -3,6 +3,7 @@ package mobsoft.vizelibalint.hu.mobszoftlab.repository;
 import android.content.Context;
 
 import com.orm.SugarContext;
+import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -15,7 +16,6 @@ import mobsoft.vizelibalint.hu.mobszoftlab.model.SeqNumber;
 import mobsoft.vizelibalint.hu.mobszoftlab.model.User;
 
 public class SugarOrmRepository implements Repository {
-
 
     @Override
     public void open(Context context) {
@@ -30,6 +30,14 @@ public class SugarOrmRepository implements Repository {
     @Override
     public List<Company> getCompanies() {
         return Select.from(Company.class).list();
+    }
+
+    @Override
+    public void setCompanies(List<Company> companies) {
+        List<Company> oldCompanies = getCompanies();
+        for(Company comp : oldCompanies)
+            SugarRecord.delete(comp);
+        SugarRecord.saveInTx(companies);
     }
 
     @Override
@@ -59,6 +67,16 @@ public class SugarOrmRepository implements Repository {
                 .first();
         comp.getCategories().add(category);
         comp.save();
+    }
+
+    @Override
+    public void setCurrentUser(User user) {
+
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return null;
     }
 
     @Override
